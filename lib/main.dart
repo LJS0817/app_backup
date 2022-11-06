@@ -1,40 +1,32 @@
+import 'package:calculator_final/models/themeModel.dart';
+import 'package:calculator_final/screens/index.dart';
+import 'package:calculator_final/screens/create_soap.dart';
+import 'package:calculator_final/models/soap_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Soap_Provider()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        routes: {
+          '/index': (context) => IndexScreen(),
+          '/create/soap': (context) => SoapScreen(),
+        },
+        initialRoute: '/index',
       ),
     );
   }
