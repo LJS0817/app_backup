@@ -1,7 +1,7 @@
-import 'package:calculator_final/models/themeModel.dart';
-import 'package:calculator_final/screens/index.dart';
-import 'package:calculator_final/screens/create_soap.dart';
-import 'package:calculator_final/models/soap_provider.dart';
+import 'models/themeModel.dart';
+import 'screens/index.dart';
+import 'screens/create_soap.dart';
+import 'models/soap_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';

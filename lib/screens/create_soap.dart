@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:calculator_final/models/dummys.dart';
 import 'package:calculator_final/models/themeModel.dart';
 import 'package:calculator_final/models/oilContainer.dart';
+import 'package:calculator_final/models/textData.dart';
 
 class SoapScreen extends StatefulWidget {
   @override
@@ -102,6 +103,7 @@ class _SoapScreen extends State<SoapScreen> {
                   containers[curIndex - 1].remove(idx);
                 } else {
                   oilData[idx] = true;
+                  log(idx.toString());
                   containers[curIndex - 1][idx] = oilContainer(idx, 0, () {
                     setState(() {});
                   });
@@ -164,8 +166,9 @@ class _SoapScreen extends State<SoapScreen> {
     super.initState();
     date =
         "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day < 10 ? "0" + DateTime.now().day.toString() : DateTime.now().day}";
-    log(Platform.localeName.toString());
-    isKor = Platform.localeName.toString().contains("ko") ? true : false;
+    //log(Platform.localeName.toString());
+    //isKor = Platform.localeName.toString().contains("ko") ? true : false;
+    isKor = true;
   }
 
   @override
@@ -349,29 +352,24 @@ class _SoapScreen extends State<SoapScreen> {
                   textFieldForm(nameController, textData().getName(), false),
                   titleForm(textData().getTypeTitle()),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       typeButton("C.P", TYPE.E_COLD, () {
                         setState(() {
                           themeData.changeTheme(TYPE.E_COLD);
                         });
                       }),
-                      Padding(
-                          padding: EdgeInsets.only(right: isSoap ? 60 : 10)),
                       typeButton("H.P", TYPE.E_HOT, () {
                         setState(() {
                           themeData.changeTheme(TYPE.E_HOT);
                         });
                       }),
-                      Padding(
-                          padding: EdgeInsets.only(right: isSoap ? 60 : 10)),
                       typeButton(textData().getTypes(TYPE.E_LENGTH.index),
                           TYPE.E_PASTE, () {
                         setState(() {
                           themeData.changeTheme(TYPE.E_PASTE);
                         });
                       }),
-                      Padding(padding: EdgeInsets.only(right: isSoap ? 0 : 10)),
                       Visibility(
                         visible: !isSoap,
                         child: typeButton("물비누", TYPE.E_PASTE, () {
@@ -637,10 +635,11 @@ class _SoapScreen extends State<SoapScreen> {
                   height: 64,
                   child: TextButton(
                       style: TextButton.styleFrom(
+                        primary: themeData.themeColor,
+                        //foregroundColor: themeData.themeColor,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero,
                         ),
-                        foregroundColor: themeData.themeColor,
                       ),
                       onPressed: () {
                         if (curIndex == 0) return;
@@ -679,7 +678,8 @@ class _SoapScreen extends State<SoapScreen> {
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero,
                         ),
-                        foregroundColor: themeData.textColor,
+                        primary: themeData.textColor,
+                        //foregroundColor: themeData.textColor,
                         backgroundColor: themeData.themeColor,
                       ),
                       onPressed: () {
@@ -713,7 +713,8 @@ class _SoapScreen extends State<SoapScreen> {
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero,
                           ),
-                          foregroundColor: themeData.themeColor),
+                          primary: themeData.themeColor),
+                      //foregroundColor: themeData.themeColor),
                       onPressed: () {
                         setState(() => {
                               if (curIndex < soap_lastPage) curIndex += 1

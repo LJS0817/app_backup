@@ -90,7 +90,7 @@ class _IndexScreenState extends State<IndexScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.soap), label: '비누'),
           BottomNavigationBarItem(
               icon: Icon(Icons.batch_prediction), label: '화장품 '),
-          BottomNavigationBarItem(icon: Icon(Icons.oil_barrel), label: '오일 '),
+          BottomNavigationBarItem(icon: Icon(Icons.water), label: '오일 '),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정 '),
         ],
       ),

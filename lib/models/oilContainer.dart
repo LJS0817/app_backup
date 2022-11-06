@@ -8,15 +8,21 @@ import 'themeModel.dart';
 class oilContainer extends StatelessWidget {
   double weight = 0;
   int index = -1;
-  int cur_index = 0;
+  POSITION pos = POSITION.NA;
   TextEditingController controller = TextEditingController();
   late Oil data;
   late Function func;
 
+  int getIndex() {
+    return index;
+  }
+
   oilContainer(int idx, double w, Function f, {super.key}) {
     weight = w;
     index = idx == -1 ? index : idx;
-    cur_index = cur_index == 0 ? containers[curIndex - 1].length : cur_index;
+    log(key.toString());
+    //pos = containers[curIndex - 1].length == 1 ? POSITION.ALL : (containers[curIndex - 1][0].key == this.key)
+    //cur_index = cur_index == 0 ? containers[curIndex - 1].length : cur_index;
     data = oils[index];
     func = f;
   }
@@ -51,18 +57,16 @@ class oilContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(containers[curIndex - 1].length.toString());
-    log(cur_index.toString());
     return Container(
         height: 50,
         margin: const EdgeInsets.only(right: 10, left: 10),
         decoration: BoxDecoration(
           color: themeData.themeColor,
-          borderRadius: cur_index == containers[curIndex - 1].length - 1
+          borderRadius: pos == POSITION.BOTTOM
               ? BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10))
-              : (cur_index == 0
+              : (pos == POSITION.TOP
                   ? BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10))
