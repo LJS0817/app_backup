@@ -104,9 +104,14 @@ class _SoapScreen extends State<SoapScreen> {
                 } else {
                   oilData[idx] = true;
                   log(idx.toString());
-                  containers[curIndex - 1][idx] = oilContainer(idx, 0, () {
-                    setState(() {});
-                  });
+                  containers[curIndex - 1][idx] = oilContainer(
+                    idx,
+                    0,
+                    () {
+                      setState(() {});
+                    },
+                    key: UniqueKey(),
+                  );
                   scrollToBottom();
                 }
               });
@@ -352,7 +357,7 @@ class _SoapScreen extends State<SoapScreen> {
                   textFieldForm(nameController, textData().getName(), false),
                   titleForm(textData().getTypeTitle()),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       typeButton("C.P", TYPE.E_COLD, () {
                         setState(() {
@@ -364,12 +369,14 @@ class _SoapScreen extends State<SoapScreen> {
                           themeData.changeTheme(TYPE.E_HOT);
                         });
                       }),
+                      //Padding(padding: EdgeInsets.only(right: isSoap ? 60 : 10)),
                       typeButton(textData().getTypes(TYPE.E_LENGTH.index),
                           TYPE.E_PASTE, () {
                         setState(() {
                           themeData.changeTheme(TYPE.E_PASTE);
                         });
                       }),
+                      //Padding(padding: EdgeInsets.only(right: isSoap ? 0 : 10)),
                       Visibility(
                         visible: !isSoap,
                         child: typeButton("물비누", TYPE.E_PASTE, () {
