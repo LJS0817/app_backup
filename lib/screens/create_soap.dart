@@ -359,6 +359,9 @@ class _SoapScreen extends State<SoapScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 10),
+                      ),
                       typeButton("C.P", TYPE.E_COLD, () {
                         setState(() {
                           themeData.changeTheme(TYPE.E_COLD);
